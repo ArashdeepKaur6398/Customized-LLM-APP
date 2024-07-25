@@ -1,42 +1,51 @@
-# Customized-LLM-APP
+# **French Practicing Assistant: RAG-Powered French Learning Chatbot**
 
-Building a Retrieval-Augmented Generation (RAG) bot can significantly enhance the capabilities of a language model by incorporating external knowledge to generate more accurate and contextually relevant responses. This guide will walk you through creating a simple RAG bot using Gradio and the Hugging Face APIs.
+French Practicing Assistant is an advanced chatbot designed to facilitate French language learning through an interactive and engaging interface. Powered by the Zephyr 7B Beta language model and enhanced with Retrieval-Augmented Generation (RAG), this application offers a unique, personalized French learning experience based on the book "Easy French Step-by-Step" by Myrna Bell Rochester.
 
-But how does RAG enhance LLM’s performance?
+### Key Features:
+- **Intelligent French Instruction**: The chatbot functions as a dedicated French tutor, offering:
+  - Explanations of French grammar concepts
+  - Vocabulary assistance
+  - Pronunciation guidance
+  - Practice exercises
+  - Simple French conversations for practice
+- **RAG-Enhanced Responses**: Utilizes a vector database built from "Easy French Step-by-Step" to provide contextually relevant information
+- **Bilingual Communication**: Adapts to the user's level, communicating in both English and French
+- **Customizable Learning Experience**: The chatbot's behavior can be fine-tuned through the system message
 
-RAG improves the performance of language models by augmenting them with external documents. This method retrieves relevant documents based on the user query and combines them with the original prompt before passing them to the language model for response generation. This approach ensures that the language model can access up-to-date and domain-specific information without the need for extensive retraining.
+### Technical Details:
+- Built with Python using the Gradio library for the user interface
+- Utilizes Hugging Face's Inference API to interact with the Zephyr 7B Beta model
+- Implements RAG using:
+  - PyMuPDF for PDF processing
+  - Sentence Transformers for text embedding
+  - FAISS for efficient similarity search
+- Allows adjustment of model parameters such as max tokens, temperature, and top-p sampling
 
+### Usage:
+1. **Install dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+2. **Launch the application**:
+   ```bash
+   python app.py
+   ```
+3. **Access the French Practicing Assistant interface** via the provided URL
+4. **Begin your French learning journey** by engaging with the chatbot
 
+### Key Components:
+- **PDF Processing**: Extracts text from "Easy French Step-by-Step" PDF
+- **Vector Database**: Creates embeddings for efficient information retrieval
+- **RAG Integration**: Enhances responses with relevant information from the book
 
-A common scenario of RAG helping LLM (Source)
+### Customization:
+The chatbot's core functionality is defined in the system message within the `respond` function. This can be modified to adjust the chatbot's behavior and focus areas.
 
-The basic steps in RAG can be simplified as follows:
+### Note:
+French Practicing Assistant is an educational project. While it offers a robust platform for French language learning based on "Easy French Step-by-Step", it is not a substitute for a human French teacher or immersive language learning.
 
-Input: The question to which the LLM system responds is referred to as the input. If no RAG is used, the LLM is directly used to respond to the question.
+### Disclaimer:
+This chatbot is based on 'Easy French Step-by-Step' by Myrna Bell Rochester. It's for educational purposes only and not a substitute for a human French teacher or immersive language learning.
 
-Indexing: If RAG is used, then a series of related documents are indexed by chunking them first, generating embeddings of the chunks, and indexing them into a vector store. At inference, the query is also embedded in a similar way.
-
-
-Basic retrieval steps in RAG. (Source)
-
-Retrieval: The relevant documents are obtained by comparing the query against the indexed vectors, also denoted as “Relevant Documents”.
-
-Generation: The relevant documents are combined with the original prompt as additional context. The combined text and prompt are then passed to the model for response generation which is then prepared as the final output of the system to the user.
-
-In the example provided, using the model directly fails to respond to the question due to a lack of knowledge of current events. On the other hand, when using RAG, the system can pull the relevant information needed for the model to answer the question appropriately. (Source)
-
-Now Let’s Build a Chatbot using RAG:
-
-I have used Zephyr LLM model and all-MiniLM-L6-v2 sentence transformer model. This sentence-transformers model maps sentences & paragraphs to a 384 dimensional dense vector space and can be used for tasks like clustering or semantic search.
-
-The all-* models were trained on all available training data (more than 1 billion training pairs) and are designed as general purpose models. The all-mpnet-base-v2 model provides the best quality, while all-MiniLM-L6-v2 is 5 times faster and still offers good quality. Toggle All models to see all evaluated original models.
-
-We need the following ingredients:
-
-1. A PDF as your knowledgebase
-
-2. A requirements.txt file
-
-3. An app.py file
-
-4. An account on Hugging Face (See this blog to learn about building a LLM chatbot in Hugging Face)
+For any questions or issues, please open an issue in the GitHub repository.
